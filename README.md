@@ -28,7 +28,11 @@ After you define your CRUDs with the visual editor, FilaStart will generate thre
 
 Then, you can copy the generated files into your Laravel project and manually add more functionality.
 
-![](./.readme/videos/Demo.gif)
+
+
+https://github.com/LaravelDaily/FilaStart/assets/3809773/44bbf38f-12fd-40a8-a19d-b3dcbbe7c839
+
+
 
 ---
 
