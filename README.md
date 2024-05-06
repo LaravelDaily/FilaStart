@@ -51,12 +51,13 @@ composer install
 php artisan key:generate
 touch database/database.sqlite  # If you want to use SQLite
 php artisan migrate --seed   # It will create a demo admin user
-Launch `/admin` and log in with `admin@admin.com` and `password`
 ```
 
-If you're successful, you should see a familiar Filament login screen:
+Then, launch `/builder` URL and you should see a familiar Filament login screen:
 
 ![](./.readme/images/loginScreen.png)
+
+Log in with credentials `admin@admin.com` and `password`
 
 ---
 
