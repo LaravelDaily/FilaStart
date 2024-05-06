@@ -45,12 +45,12 @@ The requirements are the same as those for the Laravel 11 and Filament 3 version
 Here's the list of commands for the installation:
 
 ```sh
-git clone
-cp .env.examples .env  # Edit your .env configuration
+git clone https://github.com/LaravelDaily/FilaStart
+cp .env.example .env  # Edit your .env configuration
 composer install
 php artisan key:generate
-touch database/database.sqlite # If you want to use SQLite
-php artisan migrate --seed  # It will create a demo admin user
+touch database/database.sqlite  # If you want to use SQLite
+php artisan migrate --seed   # It will create a demo admin user
 Launch `/admin` and log in with `admin@admin.com` and `password`
 ```
 
