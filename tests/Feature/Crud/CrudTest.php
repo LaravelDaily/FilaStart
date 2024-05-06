@@ -267,5 +267,5 @@ it('crud list loads correctly', function () {
 
     livewire(ListCruds::class)
         ->assertCanSeeTableRecords($cruds)
-        ->assertCountTableRecords(4);
+        ->assertCountTableRecords(0);
 });

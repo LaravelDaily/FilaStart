@@ -5,7 +5,6 @@ use App\Filament\Pages\CreatePanelPage;
 use App\Jobs\Generator\PanelCreatedJob;
 use App\Models\Panel;
 use App\Models\User;
-
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\artisan;
 use function Pest\Livewire\livewire;
@@ -45,8 +44,6 @@ it('panel created job installs base module correctly', function () {
 
     $panel = $panel->fresh();
 
-    expect($panel->modules()->count())->toBe(1)
-        ->and($panel->modules()->first()->slug)
-        ->toBe('base-module')
-        ->and($panel->cruds()->count())->toBe(4);
+    expect($panel->modules()->count())->toBe(0)
+        ->and($panel->cruds()->count())->toBe(0);
 });

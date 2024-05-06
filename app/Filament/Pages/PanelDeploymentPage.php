@@ -33,6 +33,15 @@ class PanelDeploymentPage extends Page
         $this->deployment = $panel->panelDeployments()->latest()->first();
     }
 
+    protected function getViewData(): array
+    {
+        /** @var Panel $panel */
+        $panel = Filament::getTenant();
+        return [
+            'crudsCount' => $panel->cruds()->count(),
+        ];
+    }
+
     public function startGeneration(): void
     {
         // TODO: Clean this mess up and make the UI better.

@@ -21,9 +21,6 @@ class PanelCreatedJob implements ShouldQueue
 
     public function handle(): void
     {
-        $this->panel->modules()
-            ->attach(Module::where('slug', 'base-module')->firstOrFail()->id);
-        ModuleService::getModuleClass($this->panel, 'base-module')
-            ->install($this->panel);
+        //
     }
 }
