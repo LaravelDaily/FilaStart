@@ -1,0 +1,27 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+
+parameters:
+
+    paths:
+        - app/
+        - systems/
+
+    # Level 9 is the highest level
+    level: 9
+
+    checkGenericClassInNonGenericObjectType: false
+
+    excludePaths:
+        - ./app/Http/Controllers/Auth/*.php
+        - ./app/Http/Requests/Auth/*.php
+        - ./app/Http/Controllers/ProfileController.php
+        - ./app/Http/Requests/ProfileUpdateRequest.php
+        - ./systems/generators/*/tests/*.php
+
+
+#    ignoreErrors:
+#        - '#PHPDoc tag @var#'
+#
+#
+#    checkMissingIterableValueType: false

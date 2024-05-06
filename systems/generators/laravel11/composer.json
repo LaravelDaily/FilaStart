@@ -1,0 +1,26 @@
+{
+  "name": "generators/laravel11",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "LaravelDaily",
+      "email": "info@laraveldaily.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {},
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Generators\\Laravel11\\Laravel11ServiceProvider"
+      ]
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "Generators\\Laravel11\\": "src/"
+    },
+    "files": []
+  }
+}

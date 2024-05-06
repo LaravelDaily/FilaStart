@@ -1,0 +1,26 @@
+{
+  "name": "generators/filament3",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "LaravelDaily",
+      "email": "info@laraveldaily.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {},
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Generators\\Filament3\\Filament3ServiceProvider"
+      ]
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "Generators\\Filament3\\": "src/"
+    },
+    "files": []
+  }
+}
