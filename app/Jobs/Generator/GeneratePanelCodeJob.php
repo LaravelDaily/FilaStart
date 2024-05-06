@@ -49,9 +49,11 @@ class GeneratePanelCodeJob implements ShouldQueue
         $panelService = new PanelService($this->panel);
 
         $migrations = [
-            '0000_00_00_000000_create_cache_table' => '<?php'.PHP_EOL.PHP_EOL.View::make('laravel11::cacheTable')->render(),
-            '0000_00_00_000000_create_sessions_table' => '<?php'.PHP_EOL.PHP_EOL.View::make('laravel11::sessionTable')->render(),
-            '0000_00_00_000000_create_jobs_table' => '<?php'.PHP_EOL.PHP_EOL.View::make('laravel11::jobsTable')->render(),
+            // In this array, you can add the migrations you want to create for the panel.
+            // These migrations will be added to ALL panels
+//            '0000_00_00_000000_create_cache_table' => '<?php'.PHP_EOL.PHP_EOL.View::make('laravel11::cacheTable')->render(),
+//            '0000_00_00_000000_create_sessions_table' => '<?php'.PHP_EOL.PHP_EOL.View::make('laravel11::sessionTable')->render(),
+//            '0000_00_00_000000_create_jobs_table' => '<?php'.PHP_EOL.PHP_EOL.View::make('laravel11::jobsTable')->render(),
         ];
 
         foreach ($migrations as $migrationName => $content) {
