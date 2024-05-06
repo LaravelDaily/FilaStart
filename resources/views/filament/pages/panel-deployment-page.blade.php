@@ -3,11 +3,25 @@
     <div class="">
         @if(!$deployment)
             <div class="">
-                <x-filament::button wire:click="startGeneration" class="">Start Generation</x-filament::button>
+                @if($crudsCount > 0)
+                    <x-filament::button wire:click="startGeneration" class="">Start Generation</x-filament::button>
+                @else
+                    <div class="p-4">
+                        <p class="text-red-500">No CRUDs found</p>
+                        <p class="text-red-500">Please create a CRUD to generate the panel</p>
+                    </div>
+                @endif
             </div>
         @else
             <div class="">
-                <x-filament::button wire:click="startGeneration" class="">Start Generation</x-filament::button>
+                @if($crudsCount > 0)
+                    <x-filament::button wire:click="startGeneration" class="">Start Generation</x-filament::button>
+                @else
+                    <div class="p-4">
+                        <p class="text-red-500">No CRUDs found</p>
+                        <p class="text-red-500">Please create a CRUD to generate the panel</p>
+                    </div>
+                @endif
             </div>
 
             @if($deployment->status == 'pending')
