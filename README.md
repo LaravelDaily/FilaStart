@@ -47,6 +47,7 @@ git clone https://github.com/LaravelDaily/FilaStart
 cp .env.example .env  # Edit your .env configuration
 composer install
 php artisan key:generate
+php artisan storage:link
 touch database/database.sqlite  # If you want to use SQLite
 php artisan migrate --seed   # It will create a demo admin user
 ```
