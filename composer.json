@@ -7,7 +7,7 @@
         "framework",
         "filament"
     ],
-    "version": "1.0.3",
+    "version": "1.0.4",
     "license": "MIT",
     "require": {
         "php": "^8.2",
