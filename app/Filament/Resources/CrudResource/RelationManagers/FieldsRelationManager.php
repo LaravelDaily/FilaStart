@@ -6,6 +6,7 @@ use App\Enums\CrudFieldTypes;
 use App\Enums\CrudFieldValidation;
 use App\Enums\CrudTypes;
 use App\Models\Crud;
+use App\Models\CrudField;
 use App\Models\Panel;
 use Filament\Facades\Filament;
 use Filament\Forms;
@@ -41,7 +42,7 @@ class FieldsRelationManager extends RelationManager
                     ->label('Relationship Options')
                     ->relationship('crudFieldOptions')
                     ->hidden(function (Forms\Get $get) {
-                        return ! in_array($get('type'), [CrudFieldTypes::BELONGS_TO->value, CrudFieldTypes::BELONGS_TO_MANY->value]);
+                        return !in_array($get('type'), [CrudFieldTypes::BELONGS_TO->value, CrudFieldTypes::BELONGS_TO_MANY->value]);
                     })
                     ->schema([
                         Forms\Components\Select::make('crud_id')
@@ -74,18 +75,18 @@ class FieldsRelationManager extends RelationManager
 
                                 $crud = $panel->cruds()->find($get('crud_id'));
 
-                                if (! $crud) {
+                                if (!$crud) {
                                     return [];
                                 }
 
                                 return $crud->fields()->pluck('label', 'id')->toArray();
                             })
                             ->hidden(function (Forms\Get $get) {
-                                if (! in_array($get('../type'), [CrudFieldTypes::BELONGS_TO->value, CrudFieldTypes::BELONGS_TO_MANY->value])) {
+                                if (!in_array($get('../type'), [CrudFieldTypes::BELONGS_TO->value, CrudFieldTypes::BELONGS_TO_MANY->value])) {
                                     return true;
                                 }
 
-                                if (! $get('crud_id')) {
+                                if (!$get('crud_id')) {
                                     return true;
                                 }
 
@@ -94,15 +95,18 @@ class FieldsRelationManager extends RelationManager
                     ]),
                 Forms\Components\TextInput::make('label')
                     ->required()
-                    ->unique(modifyRuleUsing: function (Forms\Get $get, Unique $rule) {
-                        if ($get('type') === CrudFieldTypes::BELONGS_TO->value) {
+                    ->unique(modifyRuleUsing: function (Forms\Get $get, Unique $rule, ?CrudField $record) {
+
+                        if ($record) {
+                            $key = $record->key;
+                        } else if ($get('type') === CrudFieldTypes::BELONGS_TO->value) {
                             $key = str($get('label')) // @phpstan-ignore-line
                                 ->lower()
-                                ->snake()
-                                ->toString().'_id';
+                                    ->snake()
+                                    ->toString() . '_id';
                         } else {
                             $key = str($get('label'))// @phpstan-ignore-line
-                                ->lower()
+                            ->lower()
                                 ->snake()
                                 ->toString();
                         }
@@ -110,8 +114,14 @@ class FieldsRelationManager extends RelationManager
                         /** @var Crud $crud */
                         $crud = $this->getOwnerRecord();
 
-                        return $rule->where('crud_id', $crud->id)
+                        $returnRule = $rule->where('crud_id', $crud->id)
                             ->where('key', $key);
+
+                        if ($record) {
+                            $returnRule->ignore($record->id);
+                        }
+
+                        return $returnRule;
                     })
                     ->maxLength(255),
                 Forms\Components\TextInput::make('tooltip')
@@ -129,12 +139,12 @@ class FieldsRelationManager extends RelationManager
                         $owner = $this->getOwnerRecord();
 
                         return $owner->fields()
-                            ->whereNotIn('key', [
-                                'created_at',
-                                'updated_at',
-                                'deleted_at',
-                            ])
-                            ->max('order') + 1;
+                                ->whereNotIn('key', [
+                                    'created_at',
+                                    'updated_at',
+                                    'deleted_at',
+                                ])
+                                ->max('order') + 1;
                     }),
             ]);
     }
